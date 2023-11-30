@@ -19,8 +19,9 @@ public class CoinRepository {
                 coin.getName(),
                 coin.getPrice(),
                 coin.getQuantity(),
-                coin.getDa
-        }
-        jdbcTemplate.update(sql:"")
+                coin.getDataTime()
+        };
+        jdbcTemplate.update(INSERT, atrr);
+        return coin;
     }
 }
