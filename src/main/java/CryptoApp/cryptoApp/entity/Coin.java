@@ -43,5 +43,11 @@ public class Coin {
         this.quantity = quantity;
     }
 
+    public Timestamp getDataTime() {
+        return dataTime;
+    }
 
+    public void setDataTime(Timestamp dataTime) {
+        this.dataTime = dataTime;
+    }
 }
