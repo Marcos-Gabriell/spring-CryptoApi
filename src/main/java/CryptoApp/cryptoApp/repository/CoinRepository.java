@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @EnableAutoConfiguration
 public class CoinRepository {
 
-    private  static String INSERT = "insert into coin(name, price, quantity, datetime) valeus (?, ?, ?, ?, ?"
+    private  static String INSERT = "insert into coin(name, price, quantity, datetime) valeus (?, ?, ?, ?, ?)";
 
     private JdbcTemplate jdbcTemplate;
 
