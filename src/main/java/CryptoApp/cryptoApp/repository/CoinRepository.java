@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@EnableAutoConfigurationCorreção
+@EnableAutoConfiguration
 public class CoinRepository {
 
     private  static String INSERT = "insert into coin(name, price, quantity, datetime) valeus (?, ?, ?, ?, ?"
