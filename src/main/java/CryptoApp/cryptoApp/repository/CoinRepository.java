@@ -1,8 +1,12 @@
 package CryptoApp.cryptoApp.repository;
 
 import CryptoApp.cryptoApp.entity.Coin;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
+@Repository
+@EnableAutoConfigurationCorreção
 public class CoinRepository {
 
     private  static String INSERT = "insert into coin(name, price, quantity, datetime) valeus (?, ?, ?, ?, ?"
