@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Timestamp;
+
 @RestController
 @RequestMapping("/coin")
 public class CoinController {
@@ -18,7 +20,7 @@ public class CoinController {
     public ResponseEntity post(@RequestBody Coin coin) {
 
         try {
-            coin.set
+            coin.setDataTime(new Timestamp(System.currentTimeMillis()));
         }catch(Exceptionxe error) {
 
         }
