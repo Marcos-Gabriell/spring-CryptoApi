@@ -2,6 +2,8 @@ package CryptoApp.cryptoApp.controller;
 
 import CryptoApp.cryptoApp.repository.CoinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +23,10 @@ public class CoinController {
 
         try {
             coin.setDataTime(new Timestamp(System.currentTimeMillis()));
+            return new ResponseEntity<>(coinRepository.insert(coin), HttpStatus.CREATED)
         }catch(Exceptionxe error) {
 
+            return new ResponseEntity<>(error.getMessage(), HttpStatus.in)
         }
     }
 
