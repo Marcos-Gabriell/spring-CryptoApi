@@ -1,15 +1,11 @@
 package CryptoApp.cryptoApp.controller;
 
-
 import CryptoApp.cryptoApp.entity.Coin;
 import CryptoApp.cryptoApp.repository.CoinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 
@@ -20,21 +16,21 @@ public class CoinController {
     @Autowired
     private CoinRepository coinRepository;
 
-    @GetMapping()
-    public ResponseEntity get(){
+    @GetMapping
+    public ResponseEntity<?> get() {
         return new ResponseEntity<>(coinRepository.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity get(@PathVariable String name){
+    public ResponseEntity<?> getByName(@PathVariable String name) {
         try {
             return new ResponseEntity<>(coinRepository.getByName(name), HttpStatus.OK);
-        } catch (Exception error){
+        } catch (Exception error) {
             return new ResponseEntity<>(error.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<?> post(@RequestBody Coin coin) {
         try {
             coin.setDateTime(new Timestamp(System.currentTimeMillis()));
