@@ -19,7 +19,10 @@ public class CoinRepository {
     private static final Logger logger = LoggerFactory.getLogger(CoinRepository.class);
 
     private static final String INSERT = "INSERT INTO coin (name, price, quantity, datetime) VALUES (?, ?, ?, ?)";
+
     private static final String SELECT_ALL = "SELECT name, quantity FROM coin";
+
+    private static String SELECT_BY_NAME = "select * from coin where name = ?";
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -52,5 +55,24 @@ public class CoinRepository {
                 return coin;
             }
         });
+    }
+
+    public List<Coin> getByName(String name) {
+
+        Object [] attr = new Object[] { name };
+        return jdbcTemplate.query(SELECT_BY_NAME, new RowMapper<Coin>() {
+            @Override
+            public Coin mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+                Coin coin = new Coin();
+                coin.setId(rs.getInt("id"));
+                coin.setPrice(rs.getBigDecimal("price"));
+                coin.setQuantity(rs.getBigDecimal("quantity"));
+                coin.setDateTime(rs.getTimestamp("datetime"));
+
+                return coin;
+
+            }
+        }, attr);
     }
 }
