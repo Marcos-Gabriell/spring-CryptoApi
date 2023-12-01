@@ -1,5 +1,6 @@
 package CryptoApp.cryptoApp.controller;
 
+import CryptoApp.cryptoApp.entity.Coin;
 import CryptoApp.cryptoApp.repository.CoinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,16 +19,13 @@ public class CoinController {
     @Autowired
     private CoinRepository coinRepository;
 
-    @PostMapping()
-    public ResponseEntity post(@RequestBody Coin coin) {
-
-        @PostMapping("/create")
-        public ResponseEntity<?> post(@RequestBody Coin coin) {
-            try {
-                coin.setDataTime(new Timestamp(System.currentTimeMillis()));
-                return new ResponseEntity<>(coinRepository.insert(coin), HttpStatus.CREATED);
-            } catch (Exception error) {
-                return new ResponseEntity<>(error.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+    @PostMapping("/create")
+    public ResponseEntity<?> post(@RequestBody Coin coin) {
+        try {
+            coin.setDataTime(new Timestamp(System.currentTimeMillis()));
+            return new ResponseEntity<>(coinRepository.insert(coin), HttpStatus.CREATED);
+        } catch (Exception error) {
+            return new ResponseEntity<>(error.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+}
