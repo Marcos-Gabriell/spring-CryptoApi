@@ -21,15 +21,13 @@ public class CoinController {
     @PostMapping()
     public ResponseEntity post(@RequestBody Coin coin) {
 
-        try {
-            coin.setDataTime(new Timestamp(System.currentTimeMillis()));
-            return new ResponseEntity<>(coinRepository.insert(coin), HttpStatus.CREATED)
-        }catch(Exceptionxe error) {
-
-            return new ResponseEntity<>(error.getMessage(), HttpStatus.in)
+        @PostMapping("/create")
+        public ResponseEntity<?> post(@RequestBody Coin coin) {
+            try {
+                coin.setDataTime(new Timestamp(System.currentTimeMillis()));
+                return new ResponseEntity<>(coinRepository.insert(coin), HttpStatus.CREATED);
+            } catch (Exception error) {
+                return new ResponseEntity<>(error.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         }
     }
-
-
-
-}
