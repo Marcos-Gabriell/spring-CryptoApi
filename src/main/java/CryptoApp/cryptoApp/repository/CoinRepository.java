@@ -9,8 +9,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class CoinRepository {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CoinRepository.class);
-    private static final String INSERT = "INSERT INTO coin (name, price, quantity, \"datetime\") VALUES (?, ?, ?, ?)";
+    private static final Logger logger = LoggerFactory.getLogger(CoinRepository.class);
+
+    private static final String INSERT = "INSERT INTO coin (name, price, quantity, datetime) VALUES (?, ?, ?, ?)";
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -19,19 +20,14 @@ public class CoinRepository {
     }
 
     public Coin insert(Coin coin) {
-        try {
-            Object[] attributes = new Object[] {
+
+            Object[] attr = new Object[] {
                     coin.getName(),
                     coin.getPrice(),
                     coin.getQuantity(),
                     coin.getDateTime()
             };
-            jdbcTemplate.update(INSERT, attributes);
-            LOGGER.info("Coin inserted successfully: {}", coin);
+            jdbcTemplate.update(INSERT, attr);
             return coin;
-        } catch (Exception e) {
-            LOGGER.error("Error inserting coin", e);
-            throw e; // Re-lança a exceção para notificar a camada superior sobre o erro
-        }
     }
 }
