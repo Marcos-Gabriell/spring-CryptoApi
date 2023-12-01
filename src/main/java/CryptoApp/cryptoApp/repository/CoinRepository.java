@@ -1,32 +1,37 @@
 package CryptoApp.cryptoApp.repository;
 
 import CryptoApp.cryptoApp.entity.Coin;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@EnableAutoConfiguration
 public class CoinRepository {
 
-    private static String INSERT = "INSERT INTO coin (name, price, quantity, datetime) VALUES (?, ?, ?, ?)";
+    private static final Logger LOGGER = LoggerFactory.getLogger(CoinRepository.class);
+    private static final String INSERT = "INSERT INTO coin (name, price, quantity, \"datetime\") VALUES (?, ?, ?, ?)";
 
-
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public CoinRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
     public Coin insert(Coin coin) {
-
-        Object[] atrr = new Object[] {
-                coin.getName(),
-                coin.getPrice(),
-                coin.getQuantity(),
-                coin.getDataTime()
-        };
-        jdbcTemplate.update(INSERT, atrr);
-        return coin;
+        try {
+            Object[] attributes = new Object[] {
+                    coin.getName(),
+                    coin.getPrice(),
+                    coin.getQuantity(),
+                    coin.getDateTime()
+            };
+            jdbcTemplate.update(INSERT, attributes);
+            LOGGER.info("Coin inserted successfully: {}", coin);
+            return coin;
+        } catch (Exception e) {
+            LOGGER.error("Error inserting coin", e);
+            throw e; // Re-lança a exceção para notificar a camada superior sobre o erro
+        }
     }
 }

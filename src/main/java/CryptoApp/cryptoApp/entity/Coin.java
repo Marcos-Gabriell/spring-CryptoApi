@@ -9,7 +9,7 @@ public class Coin {
     private String name;
     private BigDecimal price;
     private BigDecimal quantity;
-    private Timestamp dataTime;
+    private Timestamp dateTime;
 
     public int getId() {
         return id;
@@ -43,11 +43,11 @@ public class Coin {
         this.quantity = quantity;
     }
 
-    public Timestamp getDataTime() {
-        return dataTime;
+    public Timestamp getDateTime() {
+        return dateTime;
     }
 
-    public void setDataTime(Timestamp dataTime) {
-        this.dataTime = dataTime;
+    public void setDateTime(Timestamp dateTime) {
+        this.dateTime = dateTime;
     }
 }
