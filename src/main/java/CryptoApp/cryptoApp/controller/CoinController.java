@@ -19,7 +19,7 @@ public class CoinController {
     @Autowired
     private CoinRepository coinRepository;
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<?> post(@RequestBody Coin coin) {
         try {
             coin.setDataTime(new Timestamp(System.currentTimeMillis()));
