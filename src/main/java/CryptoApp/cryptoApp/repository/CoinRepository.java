@@ -23,13 +23,7 @@ public class CoinRepository {
 
     @Transactional
     public Coin insert(Coin coin) {
-        EntityTransaction transaction = entityManager.getTransaction();
-
-        transaction.begin();
-
         entityManager.persist(coin);
-
-        transaction.commit();
         return coin;
     }
 
