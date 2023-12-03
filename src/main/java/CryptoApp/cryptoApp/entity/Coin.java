@@ -1,10 +1,16 @@
 package CryptoApp.cryptoApp.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
+@Entity
 public class Coin {
 
+    @Id
+    @GeneratedValue
     private int id;
     private String name;
     private BigDecimal price;
