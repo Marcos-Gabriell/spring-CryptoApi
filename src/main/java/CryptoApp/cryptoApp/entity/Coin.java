@@ -14,8 +14,14 @@ public class Coin {
 
     @Column(name = "NAME")
     private String name;
+
+    @Column(name = "PRICE")
     private BigDecimal price;
+
+    @Column(name = "QUANTITY")
     private BigDecimal quantity;
+
+    @Column(name = "DATETIME")
     private Timestamp dateTime;
 
     public int getId() {
