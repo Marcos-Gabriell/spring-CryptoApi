@@ -15,13 +15,7 @@ import java.util.List;
 @Repository
 public class CoinRepository {
 
-    private static final String INSERT = "INSERT INTO coin (name, price, quantity, datetime) VALUES (?,?,?,?)";
-    private static final String SELECT_ALL = "SELECT name, SUM(quantity) AS quantity FROM coin GROUP BY name";
-    private static final String SELECT_BY_NAME = "SELECT * FROM coin WHERE name = ?";
-    private static final String DELETE = "DELETE FROM coin WHERE id = ?";
-    private static final String UPDATE = "UPDATE coin SET name = ?, price = ?, quantity = ? WHERE id = ?";
 
-    private final JdbcTemplate jdbcTemplate;
 
     public CoinRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
