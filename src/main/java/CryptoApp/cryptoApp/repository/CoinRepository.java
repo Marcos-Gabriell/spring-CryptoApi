@@ -38,22 +38,16 @@ public class CoinRepository {
         return query.getResultList();
     }
 
-    /*
+
     public List<Coin> getByName(String name) {
-        Object[] attr = new Object[]{name};
-        return jdbcTemplate.query(SELECT_BY_NAME, (rs, rowNum) -> {
-            Coin coin = new Coin();
-            coin.setId(rs.getInt("id"));
-            coin.setName(rs.getString("name"));
-            coin.setPrice(rs.getBigDecimal("price"));
-            coin.setQuantity(rs.getBigDecimal("quantity"));
-            coin.setDateTime(rs.getTimestamp("datetime"));
-            return coin;
-        }, attr);
+        String jpql = "select c from Coin c where c.name like :name";
+        TypedQuery<Coin> query = entityManager.createQuery(jpql, Coin.class);
+        query.setParameter("name", "%" + name + "%");
+        return query.getResultList();
     }
 
     @Transactional
     public int remove(int id) {
         return jdbcTemplate.update(DELETE, id);
-    }    */
+    }
 }
