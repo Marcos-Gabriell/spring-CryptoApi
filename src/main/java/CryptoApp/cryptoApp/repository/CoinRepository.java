@@ -1,26 +1,26 @@
 package CryptoApp.cryptoApp.repository;
 
-import CryptoApp.cryptoApp.dto.CoinTransactionDTO; // Importação da classe CoinTransactionDTO
+import CryptoApp.cryptoApp.dto.CoinTransactionDTO;
 import CryptoApp.cryptoApp.entity.Coin;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @Repository
 public class CoinRepository {
 
     private EntityManager entityManager;
+    private JdbcTemplate jdbcTemplate;
 
-    public CoinRepository(JdbcTemplate jdbcTemplate) {this.entityManager = entityManager;}
+    public CoinRepository(JdbcTemplate jdbcTemplate, EntityManager entityManager) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.entityManager = entityManager;
+    }
 
     @Transactional
     public Coin insert(Coin coin) {
@@ -34,9 +34,9 @@ public class CoinRepository {
         return coin;
     }
 
-    public List<CoinTransactionDTO> getAll() {
-        String jpql = "select new  CoinTransactionDTO(c.name, sum(c.quantity)) from Coin c group by c.name";
-        TypedQuery<CoinTransactionDTO>  query = entityManager.createNativeQuery(jpql, CoinTransactionDTO.class);
+    public List<CoinTransactionDTO> getAll(){
+        String jpql = "select new CryptoApp.cryptoApp.dto.CoinTransactionDTO(c.name, sum(c.quantity)) from Coin c group by c.name";
+        TypedQuery<CoinTransactionDTO> query = entityManager.createQuery(jpql, CoinTransactionDTO.class);
         return query.getResultList();
     }
 
@@ -57,4 +57,7 @@ public class CoinRepository {
     public int remove(int id) {
         return jdbcTemplate.update(DELETE, id);
     }
+
+    private static final String SELECT_BY_NAME = "SELECT * FROM your_table WHERE name = ?";
+    private static final String DELETE = "DELETE FROM your_table WHERE id = ?";
 }
