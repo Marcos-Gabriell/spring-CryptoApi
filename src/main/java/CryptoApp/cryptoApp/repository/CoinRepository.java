@@ -29,13 +29,7 @@ public class CoinRepository {
 
     @Transactional
     public Coin update(Coin coin) {
-        Object[] attr = new Object[]{
-                coin.getName(),
-                coin.getPrice(),
-                coin.getQuantity(),
-                coin.getId()
-        };
-        jdbcTemplate.update(UPDATE, attr);
+        entityManager.merge(coin)
         return coin;
     }
 
