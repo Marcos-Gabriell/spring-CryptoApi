@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -29,17 +30,14 @@ public class CoinRepository {
 
     @Transactional
     public Coin update(Coin coin) {
-        entityManager.merge(coin)
+        entityManager.merge(coin);
         return coin;
     }
 
     public List<CoinTransactionDTO> getAll() {
-        return jdbcTemplate.query(SELECT_ALL, (rs, rowNum) -> {
-            CoinTransactionDTO coin = new CoinTransactionDTO();
-            coin.setName(rs.getString("name"));
-            coin.setQuantity(rs.getBigDecimal("quantity"));
-            return coin;
-        });
+        String jpql = "select new  CoinTransactionDTO(c.name, sum(c.quantity)) from Coin c group by c.name";
+        TypedQuery<CoinTransactionDTO>  query = entityManager.createNativeQuery(jpql, CoinTransactionDTO.class);
+        return query.getResultList();
     }
 
     public List<Coin> getByName(String name) {
