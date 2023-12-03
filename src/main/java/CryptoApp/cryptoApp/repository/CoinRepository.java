@@ -3,6 +3,7 @@ package CryptoApp.cryptoApp.repository;
 import CryptoApp.cryptoApp.dto.CoinTransactionDTO;
 import CryptoApp.cryptoApp.entity.Coin;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,13 +15,10 @@ import java.util.List;
 @Repository
 public class CoinRepository {
 
+    @Autowired
     private EntityManager entityManager;
-    private JdbcTemplate jdbcTemplate;
 
-    public CoinRepository(JdbcTemplate jdbcTemplate, EntityManager entityManager) {
-        this.jdbcTemplate = jdbcTemplate;
-        this.entityManager = entityManager;
-    }
+
 
     @Transactional
     public Coin insert(Coin coin) {
