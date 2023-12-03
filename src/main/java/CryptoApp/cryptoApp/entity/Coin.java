@@ -11,6 +11,8 @@ public class Coin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "NAME")
     private String name;
     private BigDecimal price;
     private BigDecimal quantity;
