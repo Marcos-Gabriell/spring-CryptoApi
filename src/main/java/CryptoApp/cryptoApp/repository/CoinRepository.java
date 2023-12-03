@@ -40,6 +40,7 @@ public class CoinRepository {
         return query.getResultList();
     }
 
+    /*
     public List<Coin> getByName(String name) {
         Object[] attr = new Object[]{name};
         return jdbcTemplate.query(SELECT_BY_NAME, (rs, rowNum) -> {
@@ -56,8 +57,5 @@ public class CoinRepository {
     @Transactional
     public int remove(int id) {
         return jdbcTemplate.update(DELETE, id);
-    }
-
-    private static final String SELECT_BY_NAME = "SELECT * FROM your_table WHERE name = ?";
-    private static final String DELETE = "DELETE FROM your_table WHERE id = ?";
+    }    */
 }
