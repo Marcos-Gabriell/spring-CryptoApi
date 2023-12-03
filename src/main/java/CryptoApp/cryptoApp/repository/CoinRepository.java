@@ -47,7 +47,14 @@ public class CoinRepository {
     }
 
     @Transactional
-    public int remove(int id) {
-        return jdbcTemplate.update(DELETE, id);
+    public boolean remove(int id) {
+        Coin coin = entityManager.find(Coin.class, id);
+
+        if(coin == null)
+            throw new RuntimeException();
+
+        entityManager.remove(coin);
+        return true;
     }
+
 }
