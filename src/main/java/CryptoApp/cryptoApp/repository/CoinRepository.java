@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -15,21 +17,19 @@ import java.util.List;
 @Repository
 public class CoinRepository {
 
+    private EntityManager entityManager;
 
-
-    public CoinRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    public CoinRepository(JdbcTemplate jdbcTemplate) {this.entityManager = entityManager;}
 
     @Transactional
     public Coin insert(Coin coin) {
-        Object[] attr = new Object[]{
-                coin.getName(),
-                coin.getPrice(),
-                coin.getQuantity(),
-                coin.getDateTime()
-        };
-        jdbcTemplate.update(INSERT, attr);
+        EntityTransaction transaction = entityManager.getTransaction();
+
+        transaction.begin();
+
+        entityManager.persist(coin);
+
+        transaction.commit();
         return coin;
     }
 
