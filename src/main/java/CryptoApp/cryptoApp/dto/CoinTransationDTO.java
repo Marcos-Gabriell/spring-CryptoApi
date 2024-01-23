@@ -1,17 +1,12 @@
 package CryptoApp.cryptoApp.dto;
 
+
 import java.math.BigDecimal;
 
-public class CoinTransactionDTO {
+public class CoinTransationDTO {
 
     private String name;
     private BigDecimal quantity;
-
-    public CoinTransactionDTO(String name, BigDecimal quantity){
-        this.name = name;
-        this.quantity = quantity;
-    }
-
 
     public String getName() {
         return name;
