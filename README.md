@@ -5,7 +5,6 @@ O CryptoApp  é uma aplicação para o gerenciamento de uma carteira de criptomo
 
 
 
-
 ## Pré-requisitos
 
 - Java 8 ou superior
