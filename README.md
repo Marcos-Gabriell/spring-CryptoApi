@@ -11,7 +11,6 @@ O CryptoApp  é uma aplicação para o gerenciamento de uma carteira de criptomo
 
 ## Configuração do Projeto
 
-
 1. Clone o repositório.
 
     ```bash
