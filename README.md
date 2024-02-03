@@ -1,7 +1,8 @@
 # CryptoApp
 
+O CryptoApp  é uma aplicação para o gerenciamento de uma carteira de criptomoedas. A aplicação é construída em Java com Spring Boot e utiliza JDBC para interagir com um banco de dados H2 em memória ou o MySQL.A aplicação utiliza Vue.js para o frontend e Axios para realizar requisições HTTP.
 
-O CryptoApp  é uma aplicação para o gerenciamento de uma carteira de criptomoedas. A aplicação é construída em Java com Spring Boot e utiliza JDBC para interagir com um banco de dados H2 em memória ou o MySQL.
+![CryptoApp ](https://github.com/Marcos-Gabriell/spring-CryptoApi/blob/master/src/main/resources/static/projeto.jpg)
 
 ## Pré-requisitos
 
