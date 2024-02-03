@@ -53,7 +53,3 @@ Ao iniciar o aplicativo, ele criará automaticamente algumas transações de exe
 ## Contribuição
 
 Sinta-se à vontade para contribuir com melhorias, correções de bugs ou novas funcionalidades. Crie uma issue ou envie um pull request.
-
-## Licença
-
-Este projeto está licenciado sob a [Licença MIT](LICENSE).
